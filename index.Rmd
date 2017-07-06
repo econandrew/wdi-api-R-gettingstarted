@@ -4,7 +4,7 @@ author: "Andrew Whitby, DECDG"
 date: "7/6/2017"
 site: "bookdown::bookdown_site"
 output:
-  bookdown::gitbook:
+    bookdown::gitbook:
     config: 
       toc:
         collapse: subsection

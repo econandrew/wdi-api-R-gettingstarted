@@ -33,12 +33,12 @@
   
 <link rel="prev" href="the-world-bank-data-api.html">
 <link rel="next" href="further-reading.html">
-<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
-<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 
 
 
@@ -253,7 +253,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <span class="kw">ggplot</span>(gdp_data, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() </code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="960" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>One thing you may notice is that the example is broken up into two lines. Unlike some other programming languages, R is very forgiving about how you break lines. It sees the <code>+</code> symbol and knows to expect a continuation on the next line. Because <code>ggplot</code> statements can be quite long, it’s conventional to break them up like this.</p>
 <p>Let’s break the example down.</p>
 <ul>
@@ -267,12 +267,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gdp_data, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_col</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="960" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>And because of the way ggplot breaks plots into components, we can also have both, should we want it. (Also see how we can use color.)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gdp_data, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="960" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 <div id="a-more-complex-example." class="section level2">
 <h2><span class="header-section-number">4.6</span> A more complex example.</h2>
@@ -284,11 +284,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Now we’ll plot these as before.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(more_gdp_data, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value)) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="960" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>This isn’t ideal: we can’t really tell the three series apart. What we need is to use a different <code>color</code> or different symbol (<code>shape</code>) for each country. In <code>ggplot</code>, those are both additional aesthetics, just like <code>x</code> and <code>y</code>. We just have to assign the <code>country</code> variable to them and <code>ggplot</code> will take care of the rest.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(more_gdp_data, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value, <span class="dt">color =</span> country, <span class="dt">shape =</span> country)) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="960" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Finally, we can add a line layer, and generally tidy things up for a more presentable plot.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(more_gdp_data, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value, <span class="dt">color =</span> country, <span class="dt">shape =</span> country, <span class="dt">group =</span> country)) +
 <span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
@@ -299,7 +299,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">1985</span>,<span class="dv">2015</span>,<span class="dv">5</span>)) +
 <span class="st">  </span><span class="kw">theme_minimal</span>() +
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>())</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="960" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>You can experiment with these different components to see the effect it has on the plot. And remember you can always type: <code>?</code> followed by a function in the console to get help in r, for example <code>?labs</code>.</p>
 <p>Often you don’t know what the name is for a function, so it’s hard to search for it like that. For example, ggplot has automatically placed the legend at the right, but perhaps we’d like it at the top.</p>
 <p>To find out how to do something unfamiliar, it’s often enough to Google <a href="https://www.google.com/search?q=ggplot2+place+legend+at+top&amp;oq=ggplot2+place+legend+at+top">“ggplot2 place legend at top”</a>. Either of the first couple of hits tell us we need to use <code>theme(legend.position=&quot;top&quot;)</code> to do this. Try adding it to see what happens!</p>
@@ -315,13 +315,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <a href="further-reading.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
 require(["gitbook"], function(gitbook) {
 gitbook.start({
