@@ -1,0 +1,93 @@
+# What is an API?
+
+An API (application programming interface) is a precise specification for how two
+machines can exchange information. In this tutorial, we're usually thinking of a
+slightly narrower definition, specifically APIs for extracting data from a remote web site.
+
+## Web requests and URLs (addresses)
+
+To understand how modern web APIs work, it's useful to think about how you normally
+access a data-oriented website. The item you want to look at is identified by an URL,
+for example
+
+> <a href="http://data.companieshouse.gov.uk/doc/company/06436047" target="_blank">`http://data.companieshouse.gov.uk/doc/company/06436047`</a>
+  
+Open that link (it, and all the links in this document, will open in a new tab).
+You'll see it's the company information page for Spotify (the streaming music
+company) from the UK companies registrar. The number at the end of
+URL---06436047---is the official company number for Spotify. If you change it to
+another (valid) number, you'll get that company's information (try it with 00000118
+to find the UK's longest-surving registered company).
+
+## Web responses and HTML
+
+This page is a useful summary to look at, but it's not easy for a computer program
+to extract the data in these fields. If you right click on the page and choose
+"View Page Source" you can see the underlying code (HTML) that describes the web page.
+The data that is displayed is in there somewhere, but it's all mixed up with other
+code---to format the table, display the menus, Companies House logo, etc.
+
+Here's a fragment:
+
+```{html}
+<tr>
+    <th>CompanyName</th><td class="break-in-word">SPOTIFY LIMITED</td>
+</tr>
+<tr>
+    <th>CompanyNumber</th><td class="break-in-word">06436047</td>
+</tr>
+```
+
+### Web APIs, XML and JSON
+
+Luckily, Companies House provides a very simple API to access to same data - so
+simple, in fact, that you just need to add an extension to the URL. The extension you use
+depends on what format you want the data returned in.
+
+Just as CSV and XLSX are
+formats for tabular data, APIs have their own standard formats, the most common
+being XML and JSON. (These stand for eXtensible Markup Language and JavaScript
+Object Notation, but that's not too important.)
+
+These two formats contain the same data, they just structure it slightly
+differently. To see how this works, compare the following three links:
+
+> <a href="http://data.companieshouse.gov.uk/doc/company/06436047" target="_blank">`http://data.companieshouse.gov.uk/doc/company/06436047`</a> (Human readable)
+> <a href="http://data.companieshouse.gov.uk/doc/company/06436047.xml" target="_blank">`http://data.companieshouse.gov.uk/doc/company/06436047.xml`</a> (API, using XML)
+> <a href="http://data.companieshouse.gov.uk/doc/company/06436047.json" target="_blank">`http://data.companieshouse.gov.uk/doc/company/06436047.json`</a> (API, using JSON)
+
+You can see both the API formats are much more concise than the human readable
+version, and the JSON version is especially neat.
+
+Another thing you'll notice is that unlike CSV or XLSX, the API formats are
+designed to store _hierarchical data_. For example, in the JSON version, you'll
+see that a registered address for a company (`RegAddress`) is composed of various
+subfields.
+
+```{json}
+{
+  ...
+  "RegAddress" : {
+     "AddressLine1" : "4TH FLOOR",
+     "AddressLine2" : "25 ARGYLL STREET",
+     "PostTown" : "LONDON",
+     "Country" : "UNITED KINGDOM",
+     "Postcode" : "W1F 7TU"
+  },
+  ...
+}
+```
+
+Actually Companies House provides the same data in 'flat' CSV format, so you can compare that:
+
+> <a href="http://data.companieshouse.gov.uk/doc/company/06436047.csv" target="_blank">`http://data.companieshouse.gov.uk/doc/company/06436047.csv`</a>
+  
+But, unlike this, most web APIs don't offer CSV---usually your choice is either XML or JSON.
+
+## But how would I actually use this?
+
+In practice, you usually wouldn't access the JSON or XML API directly. Instead,
+you'll use a library that somebody has already written, that makes the API data
+available within your particular tool (e.g. Stata, R or Python).
+
+We're going to work with such a library in R, in just a minute.

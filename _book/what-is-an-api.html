@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Getting Started with World Bank data API in R</title>
+  <meta name="description" content="Getting Started with World Bank data API in R">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Getting Started with World Bank data API in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Getting Started with World Bank data API in R" />
+  
+  
+  
+
+<meta name="author" content="Andrew Whitby">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="the-world-bank-data-api.html">
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="what-is-an-api.html"><a href="what-is-an-api.html"><i class="fa fa-check"></i><b>2</b> What is an API?</a><ul>
+<li class="chapter" data-level="2.1" data-path="what-is-an-api.html"><a href="what-is-an-api.html#web-requests-and-urls-addresses"><i class="fa fa-check"></i><b>2.1</b> Web requests and URLs (addresses)</a></li>
+<li class="chapter" data-level="2.2" data-path="what-is-an-api.html"><a href="what-is-an-api.html#web-responses-and-html"><i class="fa fa-check"></i><b>2.2</b> Web responses and HTML</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="what-is-an-api.html"><a href="what-is-an-api.html#web-apis-xml-and-json"><i class="fa fa-check"></i><b>2.2.1</b> Web APIs, XML and JSON</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="what-is-an-api.html"><a href="what-is-an-api.html#but-how-would-i-actually-use-this"><i class="fa fa-check"></i><b>2.3</b> But how would I actually use this?</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-world-bank-data-api.html"><a href="the-world-bank-data-api.html"><i class="fa fa-check"></i><b>3</b> The World Bank data API</a></li>
+<li class="chapter" data-level="4" data-path="using-r-to-access-the-world-bank-api.html"><a href="using-r-to-access-the-world-bank-api.html"><i class="fa fa-check"></i><b>4</b> Using R to access the World Bank API</a></li>
+<li class="chapter" data-level="5" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i><b>5</b> Further reading</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Getting Started with World Bank data API in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="what-is-an-api" class="section level1">
+<h1><span class="header-section-number">2</span> What is an API?</h1>
+<p>An API (application programming interface) is a precise specification for how two machines can exchange information. In this tutorial, we’re usually thinking of a slightly narrower definition, specifically APIs for extracting data from a remote web site.</p>
+<div id="web-requests-and-urls-addresses" class="section level2">
+<h2><span class="header-section-number">2.1</span> Web requests and URLs (addresses)</h2>
+<p>To understand how modern web APIs work, it’s useful to think about how you normally access a data-oriented website. The item you want to look at is identified by an URL, for example</p>
+<blockquote>
+<p><a href="http://data.companieshouse.gov.uk/doc/company/06436047" target="_blank"><code>http://data.companieshouse.gov.uk/doc/company/06436047</code></a></p>
+</blockquote>
+<p>Open that link (it, and all the links in this document, will open in a new tab). You’ll see it’s the company information page for Spotify (the streaming music company) from the UK companies registrar. The number at the end of URL—06436047—is the official company number for Spotify. If you change it to another (valid) number, you’ll get that company’s information (try it with 00000118 to find the UK’s longest-surving registered company).</p>
+</div>
+<div id="web-responses-and-html" class="section level2">
+<h2><span class="header-section-number">2.2</span> Web responses and HTML</h2>
+<p>This page is a useful summary to look at, but it’s not easy for a computer program to extract the data in these fields. If you right click on the page and choose “View Page Source” you can see the underlying code (HTML) that describes the web page. The data that is displayed is in there somewhere, but it’s all mixed up with other code—to format the table, display the menus, Companies House logo, etc.</p>
+<p>Here’s a fragment:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;tr&gt;</span>
+    <span class="kw">&lt;th&gt;</span>CompanyName<span class="kw">&lt;/th&gt;&lt;td</span><span class="ot"> class=</span><span class="st">&quot;break-in-word&quot;</span><span class="kw">&gt;</span>SPOTIFY LIMITED<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;/tr&gt;</span>
+<span class="kw">&lt;tr&gt;</span>
+    <span class="kw">&lt;th&gt;</span>CompanyNumber<span class="kw">&lt;/th&gt;&lt;td</span><span class="ot"> class=</span><span class="st">&quot;break-in-word&quot;</span><span class="kw">&gt;</span>06436047<span class="kw">&lt;/td&gt;</span>
+<span class="kw">&lt;/tr&gt;</span></code></pre></div>
+<div id="web-apis-xml-and-json" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Web APIs, XML and JSON</h3>
+<p>Luckily, Companies House provides a very simple API to access to same data - so simple, in fact, that you just need to add an extension to the URL. The extension you use depends on what format you want the data returned in.</p>
+<p>Just as CSV and XLSX are formats for tabular data, APIs have their own standard formats, the most common being XML and JSON. (These stand for eXtensible Markup Language and JavaScript Object Notation, but that’s not too important.)</p>
+<p>These two formats contain the same data, they just structure it slightly differently. To see how this works, compare the following three links:</p>
+<blockquote>
+<p><a href="http://data.companieshouse.gov.uk/doc/company/06436047" target="_blank"><code>http://data.companieshouse.gov.uk/doc/company/06436047</code></a> (Human readable) <a href="http://data.companieshouse.gov.uk/doc/company/06436047.xml" target="_blank"><code>http://data.companieshouse.gov.uk/doc/company/06436047.xml</code></a> (API, using XML) <a href="http://data.companieshouse.gov.uk/doc/company/06436047.json" target="_blank"><code>http://data.companieshouse.gov.uk/doc/company/06436047.json</code></a> (API, using JSON)</p>
+</blockquote>
+<p>You can see both the API formats are much more concise than the human readable version, and the JSON version is especially neat.</p>
+<p>Another thing you’ll notice is that unlike CSV or XLSX, the API formats are designed to store <em>hierarchical data</em>. For example, in the JSON version, you’ll see that a registered address for a company (<code>RegAddress</code>) is composed of various subfields.</p>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+  <span class="er">...</span>
+  <span class="dt">&quot;RegAddress&quot;</span> <span class="fu">:</span> <span class="fu">{</span>
+     <span class="dt">&quot;AddressLine1&quot;</span> <span class="fu">:</span> <span class="st">&quot;4TH FLOOR&quot;</span><span class="fu">,</span>
+     <span class="dt">&quot;AddressLine2&quot;</span> <span class="fu">:</span> <span class="st">&quot;25 ARGYLL STREET&quot;</span><span class="fu">,</span>
+     <span class="dt">&quot;PostTown&quot;</span> <span class="fu">:</span> <span class="st">&quot;LONDON&quot;</span><span class="fu">,</span>
+     <span class="dt">&quot;Country&quot;</span> <span class="fu">:</span> <span class="st">&quot;UNITED KINGDOM&quot;</span><span class="fu">,</span>
+     <span class="dt">&quot;Postcode&quot;</span> <span class="fu">:</span> <span class="st">&quot;W1F 7TU&quot;</span>
+  <span class="fu">},</span>
+  <span class="er">...</span>
+<span class="fu">}</span></code></pre></div>
+<p>Actually Companies House provides the same data in ‘flat’ CSV format, so you can compare that:</p>
+<blockquote>
+<p><a href="http://data.companieshouse.gov.uk/doc/company/06436047.csv" target="_blank"><code>http://data.companieshouse.gov.uk/doc/company/06436047.csv</code></a></p>
+</blockquote>
+<p>But, unlike this, most web APIs don’t offer CSV—usually your choice is either XML or JSON.</p>
+</div>
+</div>
+<div id="but-how-would-i-actually-use-this" class="section level2">
+<h2><span class="header-section-number">2.3</span> But how would I actually use this?</h2>
+<p>In practice, you usually wouldn’t access the JSON or XML API directly. Instead, you’ll use a library that somebody has already written, that makes the API data available within your particular tool (e.g. Stata, R or Python).</p>
+<p>We’re going to work with such a library in R, in just a minute.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-world-bank-data-api.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

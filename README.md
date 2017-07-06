@@ -1,1 +1,0 @@
-# wdi-api-R-gettingstarted

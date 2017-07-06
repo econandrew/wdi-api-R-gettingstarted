@@ -1,0 +1,25 @@
+---
+title: "Getting Started with World Bank data API in R"
+author: "Andrew Whitby, DECDG"
+date: "7/6/2017"
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    config: 
+      toc:
+        collapse: subsection
+    lib_dir: "book_assets"
+    fig_width: 10
+    fig_height: 5
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This is a brief tutorial covering what an API is, in the context of accessing data,
+and how to use R to access and plot data from the World Bank data API.
+
+At a guess, it may take about half a day to work through this material.

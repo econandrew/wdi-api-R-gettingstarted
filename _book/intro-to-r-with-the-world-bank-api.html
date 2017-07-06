@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Getting Started with World Bank data API in R</title>
+  <meta name="description" content="Getting Started with World Bank data API in R">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Getting Started with World Bank data API in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Getting Started with World Bank data API in R" />
+  
+  
+  
+
+<meta name="author" content="Andrew Whitby">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="the-world-bank-data-api.html">
+<link rel="next" href="futher-reading.html">
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="what-is-an-api.html"><a href="what-is-an-api.html"><i class="fa fa-check"></i><b>2</b> What is an API?</a></li>
+<li class="chapter" data-level="3" data-path="the-world-bank-data-api.html"><a href="the-world-bank-data-api.html"><i class="fa fa-check"></i><b>3</b> The World Bank data API</a></li>
+<li class="chapter" data-level="4" data-path="intro-to-r-with-the-world-bank-api.html"><a href="intro-to-r-with-the-world-bank-api.html"><i class="fa fa-check"></i><b>4</b> Intro to R with the World Bank API</a><ul>
+<li class="chapter" data-level="4.1" data-path="intro-to-r-with-the-world-bank-api.html"><a href="intro-to-r-with-the-world-bank-api.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>4.1</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="4.2" data-path="intro-to-r-with-the-world-bank-api.html"><a href="intro-to-r-with-the-world-bank-api.html#running-rstudio-for-the-first-time"><i class="fa fa-check"></i><b>4.2</b> Running RStudio for the first time</a></li>
+<li class="chapter" data-level="4.3" data-path="intro-to-r-with-the-world-bank-api.html"><a href="intro-to-r-with-the-world-bank-api.html#installing-packages"><i class="fa fa-check"></i><b>4.3</b> Installing packages</a></li>
+<li class="chapter" data-level="4.4" data-path="intro-to-r-with-the-world-bank-api.html"><a href="intro-to-r-with-the-world-bank-api.html#loading-and-viewing-data"><i class="fa fa-check"></i><b>4.4</b> Loading and viewing data</a></li>
+<li class="chapter" data-level="4.5" data-path="intro-to-r-with-the-world-bank-api.html"><a href="intro-to-r-with-the-world-bank-api.html#basic-plotting-in-r-using-ggplot"><i class="fa fa-check"></i><b>4.5</b> Basic plotting in R using ggplot</a></li>
+<li class="chapter" data-level="4.6" data-path="intro-to-r-with-the-world-bank-api.html"><a href="intro-to-r-with-the-world-bank-api.html#a-more-complex-example."><i class="fa fa-check"></i><b>4.6</b> A more complex example.</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="futher-reading.html"><a href="futher-reading.html"><i class="fa fa-check"></i><b>5</b> Futher reading</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Getting Started with World Bank data API in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro-to-r-with-the-world-bank-api" class="section level1">
+<h1><span class="header-section-number">4</span> Intro to R with the World Bank API</h1>
+<p>R/RStudio is a statistical programming environment, much like Stata, SAS or SPSS. If you’ve never used such a thing, it’s comparable to Excel, except that instead of focusing on data as Excel does, we’ll focus on <em>what we’re doing to the data</em> (the code).</p>
+<p>R is the language we code in, and the R program runs that code. RStudio provides a nice graphical environment for writing and executing code, and viewing the results. Normally you don’t need to distinguish between them: nearly everyone who uses R also uses RStudio.</p>
+<div id="installing-r-and-rstudio" class="section level2">
+<h2><span class="header-section-number">4.1</span> Installing R and RStudio</h2>
+<p>World Bank computers don’t have R and RStudio installed by default, so you’ll have to make a software installation request in eServices. The great thing is both are free, so there’s no charge to worry about getting approved.</p>
+</div>
+<div id="running-rstudio-for-the-first-time" class="section level2">
+<h2><span class="header-section-number">4.2</span> Running RStudio for the first time</h2>
+<p>Once you have it installed, launch RStudio. You should see a window a bit like this (this is on a Mac, but in Windows it will look similar):</p>
+<div class="figure">
+<img src="images/RStudio.png" alt="Screenshot of the RStudio user interface" />
+<p class="caption">Screenshot of the RStudio user interface</p>
+</div>
+<p>The window is divided into four panes:</p>
+<ul>
+<li>top-left: the file editor - this is basically a text editor. It’s where you’ll write code that you want to keep track of, like the .do file editor in Stata.</li>
+<li>bottom-left: the console - this is like the windows command line. It’s where you type commands that you want to be executed immediately, and where results are displayed.</li>
+<li>top-right: don’t worry about this for now</li>
+<li>bottom-right: once we make them, plots will display here. You can also use the ‘Help’ tab to access help on functions.</li>
+</ul>
+</div>
+<div id="installing-packages" class="section level2">
+<h2><span class="header-section-number">4.3</span> Installing packages</h2>
+<p>One of R’s strongest features is a vibrant ecosystem of people who write extra functionality. R has a basic set of features built in, but often you’ll want to use these extra features (called “packages”). To do so, you need to install them, but that’s very easy.</p>
+<p>There are two we’ll use here: - <code>wbstats</code> is a package you can use to access the World Bank data API (but we didn’t have to write it - an external researcher did! that’s the benefit we get by opening our API). - <code>tidyverse</code> is actually a package-of-packages that includes tools to help load, transform and visualize data.</p>
+<p>We can install them by running the following commands. You can either copy these lines to the editor window, then select them and press Ctrl+Enter, or you can type them directly into the console window. (This will be true for the rest of the tutorial - lines that appear in grey boxes are things you should run in R.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;wbstats&quot;</span>)    <span class="co"># one of the libraries that connects with the WB API</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)  <span class="co"># a collection of useful packages for manipulating &amp; displaying data</span></code></pre></div>
+<p>In R, anything following a “#” symbol is treated as a comment, and ignored.</p>
+<p>You only have to install packages once. Once you have, they’ll be available to load each time you run R.</p>
+</div>
+<div id="loading-and-viewing-data" class="section level2">
+<h2><span class="header-section-number">4.4</span> Loading and viewing data</h2>
+<p>First we’re going to load some data from the API, and examine it. First we need to make sure the <code>wbstats</code> package is loaded (unlike installing it, we have to do this each time we restart R). As before, run these lines in RStudio:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wbstats)</code></pre></div>
+<p>Don’t worry if nothing appeared to happen. The <code>library</code> command only prints output if something goes wrong. You can test this out with the following, which should print an error message:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(not_a_real_library)</code></pre></div>
+<p>Okay, now that the <code>wbstats</code> package is loaded we can use it to get some data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">wb</span>(<span class="dt">country =</span> <span class="st">&quot;AF&quot;</span>, <span class="dt">indicator =</span> <span class="st">&quot;NY.GDP.PCAP.CD&quot;</span>, <span class="dt">startdate =</span> <span class="dv">1973</span>, <span class="dt">enddate =</span> <span class="dv">2015</span>)</code></pre></div>
+<p>This command loads data from the API and stores it as a dataset called ‘df’. In R, a standard tabular dataset is called a ‘data frame’, so you will often see people use ‘df’ as a shorthand. We could - and probably should - have named it more imaginatively.</p>
+<p>Let’s try it again with a better name.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gdp_data &lt;-<span class="st"> </span><span class="kw">wb</span>(<span class="dt">country =</span> <span class="st">&quot;AF&quot;</span>, <span class="dt">indicator =</span> <span class="st">&quot;NY.GDP.PCAP.CD&quot;</span>, <span class="dt">startdate =</span> <span class="dv">1973</span>, <span class="dt">enddate =</span> <span class="dv">2015</span>)</code></pre></div>
+<p>Now the data is loaded, but in R, unlike Excel, you can’t automatically see data that you’re working on. There are various other commands we can use to understand what the data frame looks like. Try each of these in turn:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(gdp_data)     <span class="co"># Prints the number of rows in the data frame</span></code></pre></div>
+<pre><code>## [1] 24</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(gdp_data)     <span class="co"># Prints the number of columns in the data frame</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(gdp_data)  <span class="co"># Prints a statistical summary of the data frame variables (columns)</span></code></pre></div>
+<pre><code>##      value           date           indicatorID         indicator        
+##  Min.   :117.4   Length:24          Length:24          Length:24         
+##  1st Qu.:199.0   Class :character   Class :character   Class :character  
+##  Median :269.5   Mode  :character   Mode  :character   Mode  :character  
+##  Mean   :337.1                                                           
+##  3rd Qu.:472.7                                                           
+##  Max.   :669.0                                                           
+##     iso2c             country         
+##  Length:24          Length:24         
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##                                       
+##                                       
+## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(gdp_data)     <span class="co"># Prints the first few rows</span></code></pre></div>
+<pre><code>##      value date    indicatorID                    indicator iso2c
+## 1 584.0259 2015 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+## 2 612.0697 2014 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+## 3 631.7450 2013 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+## 4 669.0091 2012 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+## 5 603.5370 2011 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+## 6 553.3003 2010 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+##       country
+## 1 Afghanistan
+## 2 Afghanistan
+## 3 Afghanistan
+## 4 Afghanistan
+## 5 Afghanistan
+## 6 Afghanistan</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(gdp_data)     <span class="co"># Prints the last few rows</span></code></pre></div>
+<pre><code>##       value date    indicatorID                    indicator iso2c
+## 38 249.2874 1978 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+## 39 226.0053 1977 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+## 40 199.0262 1976 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+## 41 187.9756 1975 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+## 42 174.9420 1974 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+## 43 144.1103 1973 NY.GDP.PCAP.CD GDP per capita (current US$)    AF
+##        country
+## 38 Afghanistan
+## 39 Afghanistan
+## 40 Afghanistan
+## 41 Afghanistan
+## 42 Afghanistan
+## 43 Afghanistan</code></pre>
+<p>Finally, RStudio provides a very useful way to view a whole data frame:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(gdp_data)</code></pre></div>
+</div>
+<div id="basic-plotting-in-r-using-ggplot" class="section level2">
+<h2><span class="header-section-number">4.5</span> Basic plotting in R using ggplot</h2>
+<p>There are multiple different ways to produce a plot in R. We’re going to use the <code>ggplot</code> package (version 2), which is part of the <code>tidyverse</code> that we installed earlier.</p>
+<p><code>ggplot</code> embodies a very particular, strong philosophy of plots, which separates different aspects of the charts construction. This takes a while to figure out, but is very powerful once you understand it. For now, just follow along with the examples.</p>
+<p>The other thing that maybe confusing with <code>ggplot</code> is that it uses the <code>+</code> sign to compose plots from component parts. Again, for now just accept that this is so, and recognise that here <code>+</code> is not adding numbers but adding graphical elements together.</p>
+<p>Let’s try a simple example using the GDP data we loaded earlier.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)  <span class="co"># Load the ggplot library</span>
+
+<span class="kw">ggplot</span>(gdp_data, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() </code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="960" /></p>
+<p>One thing you may notice is that the example is broken up into two lines. Unlike some other programming languages, R is very forgiving about how you break lines. It sees the <code>+</code> symbol and knows to expect a continuation on the next line. Because <code>ggplot</code> statements can be quite long, it’s conventional to break them up like this.</p>
+<p>Let’s break the example down.</p>
+<p>The first line <code>library(ggplot2)</code> just loads the ggplot2 library so we can use it.</p>
+<p>The second line (ignoring the blank) sets up the overall structure of the plot. The <code>ggplot</code> function does this, and it takes two main parameters. - the first parameter is the data frame containing the source data we want to plot - the second parameter describes the ‘aesthetics’ of the chart, which means the mapping betweent the data and the physical appearance. Here, we want <code>date</code> (actually, year) to appear on the x-axis and <code>value</code> to appear on the y-axis.</p>
+<p>The third lines specifies what kind of geometric representation we want to use. By specifying <code>geom_point()</code> we get points, so a scatter plot. But we can easily change this to a column chart by changing the geometry:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gdp_data, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_col</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="960" /></p>
+<p>And because of the way ggplot breaks plots into components, we can also have both, should we want it. (We’ll also see how we can use color.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gdp_data, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>) +
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="960" /></p>
+</div>
+<div id="a-more-complex-example." class="section level2">
+<h2><span class="header-section-number">4.6</span> A more complex example.</h2>
+<p>Let’s add some more countries, to a get a more interesting chart. We have to use the API again to do this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">wb</span>(<span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;NG&quot;</span>,<span class="st">&quot;HT&quot;</span>,<span class="st">&quot;KE&quot;</span>),
+         <span class="dt">indicator =</span> <span class="st">&quot;NY.GDP.PCAP.CD&quot;</span>,
+         <span class="dt">startdate =</span> <span class="dv">1981</span>, <span class="dt">enddate =</span> <span class="dv">2015</span>)</code></pre></div>
+<p>Notice again how we broke the command over three lines to make it easier to read. Use the summary commands we introduced earlier (<code>summary</code>, <code>head</code>, <code>View</code>, etc.) to check that we got what we expected.</p>
+<p>Now we’ll plot these as before.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value)) +
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="960" /></p>
+<p>But this isn’t ideal - we can’t really tell the three series apart. What we need is to use different colors or different symbols (shapes) for each country. In <code>ggplot</code>, those are both additional aesthetics, just like x and y. We just have to assign the <code>country</code> variable to them and <code>ggplot</code> will take care of the rest.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value, <span class="dt">color =</span> country, <span class="dt">shape =</span> country)) +
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="960" /></p>
+<p>Finally, we can add a line layer, and generally tidy things up for a more presentable plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value, <span class="dt">color =</span> country, <span class="dt">shape =</span> country, <span class="dt">group =</span> country)) +
+<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() +
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;GDP per capita grew noticeably faster in Nigeria since 2000&quot;</span>) +
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) +
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;GDP per capita (current US$)&quot;</span>) +
+<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">1985</span>,<span class="dv">2015</span>,<span class="dv">5</span>)) +
+<span class="st">  </span><span class="kw">theme_minimal</span>() +
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>())</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="960" /></p>
+<p>You can experiment with these different components to see the effect it has on the plot. And remember you can always type: <code>?</code> followed by a function in the Console to get help in r, for example <code>?labs</code>.</p>
+<p>Often you don’t know what the name is for a function, so it’s hard to search for it like that. For example, ggplot has automatically placed the legend at the right, but perhaps we’d like it at the top.</p>
+<p>To find out how to do something unfamiliar, it’s often enough to Google <a href="https://www.google.com/search?q=ggplot2+place+legend+at+top&amp;oq=ggplot2+place+legend+at+top">“ggplot2 place legend at top”</a>. Either of the first couple of hits tell us we need to use <code>theme(legend.position=&quot;top&quot;)</code> to do this. Try adding it to see what happens!</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-world-bank-data-api.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="futher-reading.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

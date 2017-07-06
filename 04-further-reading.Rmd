@@ -1,0 +1,10 @@
+# Further reading
+
+This has been a whirlwind introduction to loading World Bank data using the API and
+visualizing it in R. If you want to dive deeper into R, I suggest the following
+textbook (which is online for free, but available in paper form too).
+
+http://r4ds.had.co.nz/
+  
+It was co-authored by the creator of the `ggplot` package, Hadley Wickham, so it
+generally presents the current best way to get things done in R.

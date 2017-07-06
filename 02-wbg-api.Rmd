@@ -1,0 +1,76 @@
+# The World Bank data API
+
+The World Bank data API is a little more complicated than the one we've just seen,
+but the same principles apply. The documentation is fairly well described
+[here](https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information),
+so we'll just cover the basics.
+
+When you navigate around data.worldbank.org, you will see page URLs take the following format:
+
+Overview for an indicator:
+  
+> <a href="http://data.worldbank.org/indicator/NY.GDP.PCAP.CD" target="_blank">`http://data.worldbank.org/indicator/NY.GDP.PCAP.CD`</a>
+  
+An indicator, limited to a particular country and time period:
+  
+> <a href="http://data.worldbank.org/indicator/NY.GDP.PCAP.CD?end=2015&locations=AF&start=1973" target="_blank">`http://data.worldbank.org/indicator/NY.GDP.PCAP.CD?end=2015&locations=AF&start=1973`</a>
+  
+The equivalent API calls look like this, where we've specified JSON output:
+
+> <a href="http://api.worldbank.org/countries/all/indicators/NY.GDP.PCAP.CD?format=json" target="_blank">`http://api.worldbank.org/countries/all/indicators/NY.GDP.PCAP.CD?format=json`</a>
+> <a href="http://api.worldbank.org/countries/AF/indicators/NY.GDP.PCAP.CD?date=1973:2015&format=json" target="_blank">`http://api.worldbank.org/countries/AF/indicators/NY.GDP.PCAP.CD?date=1973:2015&format=json`</a>
+
+You can see that while the URL for the API is quite a bit different, the same basic parts
+are there.
+
+## How to read a complicated URL
+
+In these URLs you'll notice a question mark `?` followed by some text with the
+structure `name1=value1&name2=value2`. This is a common way to pass parameters to
+a dynamic web page (e.g. which country? which time period?). Sometimes API URLs
+will use this method, while others will use the path itself. Others, including
+the World Bank's, use a combination of both. You can interpret the second URL
+in the following way:
+
+| URL part                   | Meaning                               |
+|----------------------------|---------------------------------------|
+|`http://`                   | Make an HTTP (i.e. web) request       |
+|`api.worldbank.org/`        | to the server `api.worldbank.org`     |
+|`countries/AF`              | for country `AF` (Afghanistan)        |
+|`indicators/NY.GDP.PCAP.CD` | and indicator code `NY.GDP.PCAP.CD`   |
+|`?`                         | [introduces parameters]               |
+|`date=1973:2015`            | and date from `1973` to `2015`        |
+|`&`                         | [separates parameters]                |
+|`format=json`               | and return the results in JSON format |
+
+## Paging
+
+There is one more complication that the World Bank API adds, that the simple
+Companies House API did not. Load the following URL:
+
+> <a href="http://api.worldbank.org/countries/all/indicators/NY.GDP.PCAP.CD?format=json" target="_blank">`http://api.worldbank.org/countries/all/indicators/NY.GDP.PCAP.CD?format=json`</a>
+
+You should see, towards the top of the response, something like the following:
+```{json}
+{
+  "page": 1,
+  "pages": 301,
+  "per_page": "50",
+  "total": 15048
+}
+```
+
+What's going on here is that because you specified all countries and didn't
+specify a time period, the API is returning GDP for all countries and all years.
+That's a lot of data, so the API service has broken it up into multiple 'pages'.
+
+This first section of the response indicates that a total of 15048 data points
+are being returned, but that it has been broken up into 301 pages of 50 points
+per page, of which this is just the first.
+
+To see the next page, you can add the string `&page=2` to the URL. Try it and
+see what changes!
+
+You won't have to worry about pages---the R library we'll introduce next handles
+all that for you. But this is a very common pattern with web APIs, so it's worth
+being aware of it.

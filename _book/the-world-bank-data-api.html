@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Getting Started with World Bank data API in R</title>
+  <meta name="description" content="Getting Started with World Bank data API in R">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Getting Started with World Bank data API in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Getting Started with World Bank data API in R" />
+  
+  
+  
+
+<meta name="author" content="Andrew Whitby">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="what-is-an-api.html">
+<link rel="next" href="using-r-to-access-the-world-bank-api.html">
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="what-is-an-api.html"><a href="what-is-an-api.html"><i class="fa fa-check"></i><b>2</b> What is an API?</a></li>
+<li class="chapter" data-level="3" data-path="the-world-bank-data-api.html"><a href="the-world-bank-data-api.html"><i class="fa fa-check"></i><b>3</b> The World Bank data API</a><ul>
+<li class="chapter" data-level="3.1" data-path="the-world-bank-data-api.html"><a href="the-world-bank-data-api.html#how-to-read-a-complicated-url"><i class="fa fa-check"></i><b>3.1</b> How to read a complicated URL</a></li>
+<li class="chapter" data-level="3.2" data-path="the-world-bank-data-api.html"><a href="the-world-bank-data-api.html#paging"><i class="fa fa-check"></i><b>3.2</b> Paging</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="using-r-to-access-the-world-bank-api.html"><a href="using-r-to-access-the-world-bank-api.html"><i class="fa fa-check"></i><b>4</b> Using R to access the World Bank API</a></li>
+<li class="chapter" data-level="5" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i><b>5</b> Further reading</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Getting Started with World Bank data API in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-world-bank-data-api" class="section level1">
+<h1><span class="header-section-number">3</span> The World Bank data API</h1>
+<p>The World Bank data API is a little more complicated than the one we’ve just seen, but the same principles apply. The documentation is fairly well described <a href="https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information">here</a>, so we’ll just cover the basics.</p>
+<p>When you navigate around data.worldbank.org, you will see page URLs take the following format:</p>
+<p>Overview for an indicator:</p>
+<blockquote>
+<p><a href="http://data.worldbank.org/indicator/NY.GDP.PCAP.CD" target="_blank"><code>http://data.worldbank.org/indicator/NY.GDP.PCAP.CD</code></a></p>
+</blockquote>
+<p>An indicator, limited to a particular country and time period:</p>
+<blockquote>
+<p><a href="http://data.worldbank.org/indicator/NY.GDP.PCAP.CD?end=2015&locations=AF&start=1973" target="_blank"><code>http://data.worldbank.org/indicator/NY.GDP.PCAP.CD?end=2015&amp;locations=AF&amp;start=1973</code></a></p>
+</blockquote>
+<p>The equivalent API calls look like this, where we’ve specified JSON output:</p>
+<blockquote>
+<p><a href="http://api.worldbank.org/countries/all/indicators/NY.GDP.PCAP.CD?format=json" target="_blank"><code>http://api.worldbank.org/countries/all/indicators/NY.GDP.PCAP.CD?format=json</code></a> <a href="http://api.worldbank.org/countries/AF/indicators/NY.GDP.PCAP.CD?date=1973:2015&format=json" target="_blank"><code>http://api.worldbank.org/countries/AF/indicators/NY.GDP.PCAP.CD?date=1973:2015&amp;format=json</code></a></p>
+</blockquote>
+<p>You can see that while the URL for the API is quite a bit different, the same basic parts are there.</p>
+<div id="how-to-read-a-complicated-url" class="section level2">
+<h2><span class="header-section-number">3.1</span> How to read a complicated URL</h2>
+<p>In these URLs you’ll notice a question mark <code>?</code> followed by some text with the structure <code>name1=value1&amp;name2=value2</code>. This is a common way to pass parameters to a dynamic web page (e.g. which country? which time period?). Sometimes API URLs will use this method, while others will use the path itself. Others, including the World Bank’s, use a combination of both. You can interpret the second URL in the following way:</p>
+<table>
+<thead>
+<tr class="header">
+<th>URL part</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>http://</code></td>
+<td>Make an HTTP (i.e. web) request</td>
+</tr>
+<tr class="even">
+<td><code>api.worldbank.org/</code></td>
+<td>to the server <code>api.worldbank.org</code></td>
+</tr>
+<tr class="odd">
+<td><code>countries/AF</code></td>
+<td>for country <code>AF</code> (Afghanistan)</td>
+</tr>
+<tr class="even">
+<td><code>indicators/NY.GDP.PCAP.CD</code></td>
+<td>and indicator code <code>NY.GDP.PCAP.CD</code></td>
+</tr>
+<tr class="odd">
+<td><code>?</code></td>
+<td>[introduces parameters]</td>
+</tr>
+<tr class="even">
+<td><code>date=1973:2015</code></td>
+<td>and date from <code>1973</code> to <code>2015</code></td>
+</tr>
+<tr class="odd">
+<td><code>&amp;</code></td>
+<td>[separates parameters]</td>
+</tr>
+<tr class="even">
+<td><code>format=json</code></td>
+<td>and return the results in JSON format</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="paging" class="section level2">
+<h2><span class="header-section-number">3.2</span> Paging</h2>
+<p>There is one more complication that the World Bank API adds, that the simple Companies House API did not. Load the following URL:</p>
+<blockquote>
+<p><a href="http://api.worldbank.org/countries/all/indicators/NY.GDP.PCAP.CD?format=json" target="_blank"><code>http://api.worldbank.org/countries/all/indicators/NY.GDP.PCAP.CD?format=json</code></a></p>
+</blockquote>
+<p>You should see, towards the top of the response, something like the following:</p>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">&quot;page&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span>
+  <span class="dt">&quot;pages&quot;</span><span class="fu">:</span> <span class="dv">301</span><span class="fu">,</span>
+  <span class="dt">&quot;per_page&quot;</span><span class="fu">:</span> <span class="st">&quot;50&quot;</span><span class="fu">,</span>
+  <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="dv">15048</span>
+<span class="fu">}</span></code></pre></div>
+<p>What’s going on here is that because you specified all countries and didn’t specify a time period, the API is returning GDP for all countries and all years. That’s a lot of data, so the API service has broken it up into multiple ‘pages’.</p>
+<p>This first section of the response indicates that a total of 15048 data points are being returned, but that it has been broken up into 301 pages of 50 points per page, of which this is just the first.</p>
+<p>To see the next page, you can add the string <code>&amp;page=2</code> to the URL. Try it and see what changes!</p>
+<p>You won’t have to worry about pages—the R library we’ll introduce next handles all that for you. But this is a very common pattern with web APIs, so it’s worth being aware of it.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="what-is-an-api.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-r-to-access-the-world-bank-api.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
