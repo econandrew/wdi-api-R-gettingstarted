@@ -22,4 +22,11 @@ knitr::opts_chunk$set(echo = TRUE)
 This is a brief tutorial covering what an API is, in the context of accessing data,
 and how to use R to access and plot data from the World Bank data API.
 
+It's designed for people who want to
+
+1. learn what an API is, and may have to use other (non-World Bank) APIs
+2. learn how to access the World Bank API in R
+
+If you just want to focus on the second, you can probably skip ahead to chapter 3.
+
 At a guess, it may take about half a day to work through this material.
